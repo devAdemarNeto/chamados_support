@@ -22,15 +22,11 @@ class TicketsController < ApplicationController
   # POST /tickets or /tickets.json
   def create
     @ticket = Ticket.new(ticket_params)
-
-    respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to @ticket, notice: "Ticket was successfully created." }
-        format.json { render :show, status: :created, location: @ticket }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
+  
+    if @ticket.save
+      redirect_to @ticket, notice: "Ticket was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -60,11 +56,13 @@ class TicketsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params.expect(:id))
+      @ticket = Ticket.find(params[:id])
     end
+    
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.expect(ticket: [ :titulo, :descricao, :status, :user_id ])
+      params.require(:ticket).permit(:titulo, :descricao, :status, :user_id)
     end
+    
 end
