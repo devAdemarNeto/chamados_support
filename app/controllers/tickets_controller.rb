@@ -45,13 +45,19 @@ class TicketsController < ApplicationController
 
   # DELETE /tickets/1 or /tickets/1.json
   def destroy
-    @ticket.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to tickets_path, status: :see_other, notice: "Ticket was successfully destroyed." }
-      format.json { head :no_content }
+    if @ticket.destroy
+      respond_to do |format|
+        format.html { redirect_to tickets_path, notice: "Ticket was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to tickets_path, alert: "Não foi possível excluir o ticket." }
+        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+      end
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
