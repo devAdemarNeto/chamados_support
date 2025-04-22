@@ -1,4 +1,10 @@
-<h1><%= @ticket.titulo %></h1>
-<p><strong>Status:</strong> <%= @ticket.status %></p>
-<p><strong>Descrição:</strong> <%= @ticket.descricao %></p>
-<p><strong>Usuário:</strong> <%= @ticket.user.nome %></p>
+<h1>Detalhes do Ticket</h1>
+
+    <p><strong>Título:</strong> <%= @ticket.titulo %></p>
+    <p><strong>Descrição:</strong> <%= @ticket.descricao %></p>
+    <p><strong>Status:</strong> <%= @ticket.status %></p>
+    <p><strong>Chamador:</strong> <%= @ticket.user.nome %></p>
+    
+    <%= link_to 'Editar', edit_ticket_path(@ticket) %> |
+    <%= link_to 'Voltar', tickets_path %>
+    
