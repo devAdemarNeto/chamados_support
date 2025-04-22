@@ -1,9 +1,14 @@
 <h1>Tickets</h1>
+
+<%= link_to 'Criar novo Ticket', new_ticket_path %>
+
 <table>
   <thead>
     <tr>
       <th>Título</th>
+      <th>Descrição</th>
       <th>Status</th>
+      <th>Chamador</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -11,11 +16,13 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.titulo %></td>
+        <td><%= ticket.descricao %></td>
         <td><%= ticket.status %></td>
+        <td><%= ticket.user.nome %></td>
         <td>
-          <%= link_to 'Show', ticket_path(ticket) %>
-          <%= link_to 'Edit', edit_ticket_path(ticket) %>
-          <%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Mostrar', ticket_path(ticket) %> |
+          <%= link_to 'Editar', edit_ticket_path(ticket) %> |
+          <%= link_to 'Deletar', ticket_path(ticket), method: :delete, data: { confirm: 'Tem certeza?' } %>
         </td>
       </tr>
     <% end %>
