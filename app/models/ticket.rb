@@ -4,4 +4,5 @@ class Ticket < ApplicationRecord
   validates :titulo, presence: true
   validates :descricao, presence: true
   validates :status, presence: true
+  validates :user_id, presence: true
 end
