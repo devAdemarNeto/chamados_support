@@ -1,8 +1,14 @@
-<% @tickets.each do |ticket| %>
-  <div class="ticket">
-    <h3><%= ticket.title %></h3>
-    <p><%= ticket.description %></p>
-    <%= link_to 'Ver', ticket_path(ticket), class: 'btn btn-primary' %>
-    <%= link_to 'Editar', edit_ticket_path(ticket), class: 'btn btn-warning' %>
-  </div>
+<% if @tickets.any? %>
+  <% @tickets.each do |ticket| %>
+    <div class="ticket">
+      <h3><%= ticket.titulo %></h3>  <!-- Corrigido para 'titulo' -->
+      <p><%= ticket.descricao %></p> <!-- Corrigido para 'descricao' -->
+      <%= link_to 'Ver', ticket_path(ticket), class: 'btn btn-primary' %>
+      <%= link_to 'Editar', edit_ticket_path(ticket), class: 'btn btn-warning' %>  
+      <%= link_to 'Novo Ticket', new_ticket_path, class: 'btn btn-success' %>
+  
+    </div>
+  <% end %>
+<% else %>
+  <p>Não há tickets cadastrados.</p>
 <% end %>
