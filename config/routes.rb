@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "dashboard/index"
   devise_for :users
   resources :tickets
-  resources :users
+  
 
   # Utilize o devise_scope para definir o root
   devise_scope :user do
