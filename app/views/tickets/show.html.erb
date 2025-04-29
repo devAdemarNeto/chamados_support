@@ -1,13 +1,10 @@
-<h1>Detalhes do Ticket</h1>
-
-    <%= current_user.nome %>
-
+<h1>Detalhes do Chamado</h1>
 
     <p><strong>Título:</strong> <%= @ticket.titulo %></p>
     <p><strong>Descrição:</strong> <%= @ticket.descricao %></p>
     <p><strong>Status:</strong> <%= @ticket.status %></p>
-    <p><strong>Chamador:</strong> <%= @ticket.user.nome %></p>
+    <p><strong>Criado em:</strong> <%= l(@ticket.created_at, format: :short) %></p>
     
-    <%= link_to 'Editar', edit_ticket_path(@ticket) %> |
-    <%= link_to 'Voltar', tickets_path %>
+    <%= link_to "Voltar", tickets_path, class: "btn btn-secondary" %>
+    
     

@@ -23,6 +23,7 @@
         <td><%= ticket.user.nome %></td>
         <td><%= link_to 'Mostrar', ticket %></td>
         <td><%= link_to 'Editar', edit_ticket_path(ticket) %></td>
+        <td><%= link_to "Ver", ticket_path(ticket), class: "btn btn-info" %>
         <td><%= button_to 'Excluir', ticket, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
