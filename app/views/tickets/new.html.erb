@@ -22,11 +22,7 @@
     <%= form.text_area :descricao %>
   </div>
 
-  <div>
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
+ 
   <div>
     <%= form.label :user_id, 'Usuário' %>
     <%= form.collection_select :user_id, User.all, :id, :nome, prompt: "Selecione o usuário" %>
