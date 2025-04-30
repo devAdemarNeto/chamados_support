@@ -5,6 +5,6 @@
     <p><strong>Status:</strong> <%= @ticket.status %></p>
     <p><strong>Criado em:</strong> <%= l(@ticket.created_at, format: :short) %></p>
     
-    <%= link_to "Voltar", tickets_path, class: "btn btn-secondary" %>
+    <%= link_to 'Voltar para a lista', tickets_path, class: 'btn btn-secondary' %>
     
     
