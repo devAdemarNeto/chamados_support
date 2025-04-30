@@ -1,12 +1,38 @@
-<% content_for :title, "Editing ticket" %>
+<h1>Editar Chamado</h1>
 
-<h1>Editing ticket</h1>
+<%= form_with(model: @ticket, local: true) do |form| %>
+  <% if @ticket.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ticket.errors.count, "erro") %> proibiu que este ticket fosse salvo:</h2>
+      <ul>
+        <% @ticket.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= render "form", ticket: @ticket %>
+  <div class="form-group">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, class: 'form-control' %>
+  </div>
 
-<br>
+  <div class="form-group">
+    <%= form.label :descricao %>
+    <%= form.text_area :descricao, class: 'form-control' %>
+  </div>
 
-<div>
-  <%= link_to "Show this ticket", @ticket %> |
-  <%= link_to "Back to tickets", tickets_path %>
-</div>
+  <div class="form-group">
+    <%= form.label :status %>
+    <%= form.select :status, ['aberto', 'fechado', 'em andamento'], {}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :prioridade %>
+    <%= form.select :prioridade, ['baixa', 'media', 'alta'], {}, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Atualizar Chamado', class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to 'Voltar', ticket_path(@ticket), class: 'btn btn-secondary' %>

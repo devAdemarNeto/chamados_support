@@ -28,8 +28,9 @@
         <td><%= ticket.prioridade %></td>
         <td>
           <%= link_to 'Editar', edit_ticket_path(ticket), class: 'btn btn-warning' %>
-          <%= link_to 'Excluir', ticket_path(ticket), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: 'btn btn-danger' %>
+          <%= button_to 'Excluir', ticket_path(ticket), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }, class: 'btn btn-danger' %>
         </td>
+
       </tr>
     <% end %>
   </tbody>
