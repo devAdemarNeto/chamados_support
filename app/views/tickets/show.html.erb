@@ -5,6 +5,9 @@
     <p><strong>Status:</strong> <%= @ticket.status %></p>
     <p><strong>Criado em:</strong> <%= l(@ticket.created_at, format: :short) %></p>
     
+    <%= link_to "Editar", edit_ticket_path(@ticket), class: "btn btn-primary" %>
     <%= link_to 'Voltar para a lista', tickets_path, class: 'btn btn-secondary' %>
+    <%= button_to 'Excluir', ticket_path(@ticket), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este chamado?' }, class: "btn btn-danger" %>
+
     
     

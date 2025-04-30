@@ -18,6 +18,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
+    @ticket = Ticket.find(params[:id])
   end
 
   # POST /tickets or /tickets.json
@@ -33,14 +34,11 @@ class TicketsController < ApplicationController
 
   # PATCH/PUT /tickets/1 or /tickets/1.json
   def update
-    respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: "Ticket was successfully updated." }
-        format.json { render :show, status: :ok, location: @ticket }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
-      end
+    @ticket = Ticket.find(params[:id])
+    if @ticket.update(ticket_params)
+      redirect_to @ticket, notice: 'Chamado atualizado com sucesso.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
