@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
 
   # POST /tickets or /tickets.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = current_user.tickets.build(ticket_params)
   
     if @ticket.save
       redirect_to @ticket, notice: "Ticket was successfully created."
@@ -64,7 +64,7 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:titulo, :descricao, :status, :user_id)
+      params.require(:ticket).permit(:titulo, :descricao, :status, :prioridade)
     end
     
 end
