@@ -1,9 +1,13 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /tickets or /tickets.json
   def index
     @tickets = Ticket.all
+
+    if params[:status].present?
+      @tickets = @tickets.where(status: params[:status])
+    end
   end
 
   # GET /tickets/1 or /tickets/1.json
