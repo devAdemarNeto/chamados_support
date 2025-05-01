@@ -5,8 +5,11 @@
     <%= label_tag :status, 'Filtrar por Status' %>
     <%= select_tag :status, options_for_select([['Todos', ''], ['Aberto', 'aberto'], ['Em Andamento', 'em andamento'], ['Fechado', 'fechado']], params[:status]), class: 'form-control' %>
   </div>
-  <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>
+  <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>  
 <% end %>
+<div>
+  <%= link_to "Ordenar por mais #{params[:order] == 'asc' ? 'recentes' : 'antigos'}", tickets_path(order: params[:order] == 'asc' ? 'desc' : 'asc', status: params[:status]), class: "btn btn-secondary mb-3" %>
+</div>
 
 
 <table class="table">

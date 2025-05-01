@@ -3,7 +3,8 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
-    @tickets = Ticket.all
+    order = params[:order] == 'asc' ? :asc : :desc
+    @tickets = Ticket.order(created_at: order) # Ordenação dinêmica
 
     if params[:status].present?
       @tickets = @tickets.where(status: params[:status])
