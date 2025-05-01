@@ -57,6 +57,12 @@ class TicketsController < ApplicationController
     @ticket.destroy
     redirect_to tickets_url, notice: 'Chamado excluído com sucesso.'
   end
+
+
+   # Sobrescreve o método após o login
+   def after_sign_in_path_for(resource)
+    tickets_path # Redireciona para a página de tickets após o login
+  end
   
   
 
