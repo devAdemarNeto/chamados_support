@@ -22,6 +22,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-<% if user_signed_in? %>
-      <%= link_to 'Sair', destroy_user_session_path, method: :delete, data: { confirm: 'Tem certeza que deseja sair?' } %>
-    <% end %>

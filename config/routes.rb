@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # Utilize o devise_scope para definir o root
   devise_scope :user do
-    root to: "dashboard#index"
+    root to: "tickets#index"
   end
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

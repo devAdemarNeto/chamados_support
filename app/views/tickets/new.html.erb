@@ -1,4 +1,4 @@
-<h1>Criar Ticket</h1>
+<h1>Novo Chamado</h1>
 
 <%= form_with(model: @ticket, local: true) do |form| %>
   <% if @ticket.errors.any? %>
@@ -25,7 +25,7 @@
  
   
   <div>
-    <%= form.submit %>
+    <%= form.submit "Criar Chamado"%>
   </div>
 <% end %>
 
