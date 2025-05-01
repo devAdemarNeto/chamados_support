@@ -7,6 +7,13 @@
   </div>
   <%= submit_tag 'Filtrar', class: 'btn btn-primary' %>  
 <% end %>
+
+<%= form_with url: tickets_path, method: :get, local: true, class: "mb-3 d-flex gap-2" do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Buscar por título ou descrição", class: "form-control" %>
+  <%= submit_tag "Buscar", class: "btn btn-primary" %>
+<% end %>
+
+
 <div>
   <%= link_to "Ordenar por mais #{params[:order] == 'asc' ? 'recentes' : 'antigos'}", tickets_path(order: params[:order] == 'asc' ? 'desc' : 'asc', status: params[:status]), class: "btn btn-secondary mb-3" %>
 </div>

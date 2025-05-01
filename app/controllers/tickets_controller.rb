@@ -4,10 +4,14 @@ class TicketsController < ApplicationController
   # GET /tickets or /tickets.json
   def index
     order = params[:order] == 'asc' ? :asc : :desc
-    @tickets = Ticket.order(created_at: order) # Ordenação dinêmica
+    @tickets = Ticket.order(created_at: order) # Ordenação dinâmica
 
     if params[:status].present?
       @tickets = @tickets.where(status: params[:status])
+    end
+
+    if params[:query].present?
+      @tickets = @tickets.where('LOWER(titulo) LIKE LOWER(?) OR LOWER(descricao) LIKE LOWER(?)', "%#{params[:query]}%", "%#{params[:query]}%")
     end
   end
 
