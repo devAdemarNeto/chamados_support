@@ -4,7 +4,7 @@ class TicketsController < ApplicationController
   # GET /tickets or /tickets.json
   def index
     order = params[:order] == 'asc' ? :asc : :desc
-    @tickets = Ticket.order(created_at: order) # Ordenação dinâmica
+    @tickets = current_user.tickets.order(created_at: order)
 
     if params[:status].present?
       @tickets = @tickets.where(status: params[:status])
@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1 or /tickets/1.json
   def show
-    @ticket = Ticket.find(params[:id])
+    current_user.tickets.find(params[:id])
   end
 
   # GET /tickets/new
@@ -27,7 +27,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1/edit
   def edit
-    @ticket = Ticket.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
   end
 
   # POST /tickets or /tickets.json
@@ -43,7 +43,7 @@ class TicketsController < ApplicationController
 
   # PATCH/PUT /tickets/1 or /tickets/1.json
   def update
-    @ticket = Ticket.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
     if @ticket.update(ticket_params)
       redirect_to @ticket, notice: 'Chamado atualizado com sucesso.'
     else
@@ -53,7 +53,7 @@ class TicketsController < ApplicationController
 
   # DELETE /tickets/1 or /tickets/1.json
   def destroy
-    @ticket = Ticket.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
     @ticket.destroy
     redirect_to tickets_url, notice: 'Chamado excluído com sucesso.'
   end
