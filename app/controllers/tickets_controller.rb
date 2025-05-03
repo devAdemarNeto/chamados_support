@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1 or /tickets/1.json
   def show
-    current_user.tickets.find(params[:id])
+    @ticket = current_user.tickets.find(params[:id])
   end
 
   # GET /tickets/new
