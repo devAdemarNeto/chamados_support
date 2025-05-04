@@ -1,38 +1,43 @@
-<h1>Editar Chamado</h1>
+<div class="bg-white rounded-lg shadow-md p-6 mx-auto max-w-4xl my-6">
+  <h1 class="text-5xl font-bold mb-6 text-gray-800">Editar Chamado</h1>
 
-<%= form_with(model: @ticket, local: true) do |form| %>
-  <% if @ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ticket.errors.count, "erro") %> proibiu que este ticket fosse salvo:</h2>
-      <ul>
-        <% @ticket.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_with(model: @ticket, local: true) do |form| %>
+    <% if @ticket.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+        <h2 class="text-red-700 font-medium"><%= pluralize(@ticket.errors.count, "erro") %> proibiu que este ticket fosse salvo:</h2>
+        <ul class="ml-4 mt-2 list-disc">
+          <% @ticket.errors.full_messages.each do |message| %>
+            <li class="text-red-600"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-4">
+      <%= form.label :titulo, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_field :titulo, class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :descrição, class: "block text-sm font-medium text-gray-700 mb-1" %>
+      <%= form.text_area :descricao, class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500", rows: 5 %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div>
+        <%= form.label :status, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.select :status, ['aberto', 'fechado', 'em andamento'], {}, class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+
+      <div>
+        <%= form.label :prioridade, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.select :prioridade, ['baixa', 'media', 'alta'], {}, class: "w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+      </div>
+    </div>
+
+    <div class="flex space-x-4 mt-6">
+      <%= form.submit 'Atualizar Chamado', class: 'bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200' %>
+      <%= link_to 'Voltar', ticket_path(@ticket), class: 'bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded transition duration-200' %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :titulo %>
-    <%= form.text_field :titulo, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :descrição %>
-    <%= form.text_area :descricao, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :status %>
-    <%= form.select :status, ['aberto', 'fechado', 'em andamento'], {}, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :prioridade %>
-    <%= form.select :prioridade, ['baixa', 'media', 'alta'], {}, class: 'form-control' %>
-  </div>
-
-  <%= form.submit 'Atualizar Chamado', class: 'btn btn-primary' %>
-<% end %>
-
-<%= link_to 'Voltar', ticket_path(@ticket), class: 'btn btn-secondary' %>
+</div>

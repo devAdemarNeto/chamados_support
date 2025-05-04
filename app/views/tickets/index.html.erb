@@ -15,7 +15,7 @@
         <%= label_tag :status, 'Filtrar por Status', class: 'text-sm font-medium text-gray-700' %>
         <%= select_tag :status, 
             options_for_select([['Todos', ''], ['Aberto', 'aberto'], ['Em Andamento', 'em andamento'], ['Fechado', 'fechado']], params[:status]), 
-            class: 'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md' %>
+            class: 'mt-1 block w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 rounded-md' %>
       </div>
       <%= submit_tag 'Filtrar', class: 'px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2' %>  
     <% end %>
