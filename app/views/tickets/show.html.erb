@@ -1,13 +1,52 @@
-<h1>Detalhes do Chamado</h1>
+<div class="bg-white rounded-lg shadow-md p-6 mx-auto max-w-4xl my-6">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">Detalhes do Chamado</h1>
 
-    <p><strong>Título:</strong> <%= @ticket.titulo %></p>
-    <p><strong>Descrição:</strong> <%= @ticket.descricao %></p>
-    <p><strong>Status:</strong> <%= @ticket.status %></p>
-    <p><strong>Criado em:</strong> <%= l(@ticket.created_at, format: :short) %></p>
-    
-    <%= link_to "Editar", edit_ticket_path(@ticket), class: "btn btn-primary" %>
-    <%= link_to 'Voltar para a lista', tickets_path, class: 'btn btn-secondary' %>
-    <%= button_to 'Excluir', ticket_path(@ticket), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este chamado?' }, class: "btn btn-danger" %>
+  <div class="bg-gray-50 rounded-lg p-5 mb-6">
+    <div class="mb-5">
+      <h2 class="text-lg font-semibold text-blue-600 mb-2">Título</h2>
+      <p class="text-gray-800 text-lg"><%= @ticket.titulo %></p>
+    </div>
 
-    
-    
+    <br>
+
+    <div class="mb-5">
+      <h2 class="text-lg font-semibold text-blue-600 mb-2">Descrição</h2>
+      <div class="bg-white p-4">
+        <p class="text-gray-800 whitespace-pre-wrap"><%= @ticket.descricao %></p>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-3">
+      <div>
+        <h2 class="text-lg font-semibold text-blue-600 mb-2">Status</h2>
+        <% status_classes = {
+          'aberto' => 'bg-green-100 text-green-800',
+          'fechado' => 'bg-red-100 text-red-800',
+          'em andamento' => 'bg-yellow-100 text-yellow-800'
+        } %>
+        <span class="<%= status_classes[@ticket.status.to_s] || 'bg-gray-100 text-gray-800' %> px-3 py-1 rounded-full text-sm font-medium">
+          <%= @ticket.status %>
+        </span>
+      </div>
+
+      <br>
+
+      <div>
+        <h2 class="text-lg font-semibold text-blue-600 mb-2">Criado em</h2>
+        <p class="text-gray-800"><%= l(@ticket.created_at, format: :short) %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row mt-1 border-t pt-5 space-x-3">
+    <%= link_to edit_ticket_path(@ticket), class: "bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-5 rounded transition duration-200 flex items-center" do %>    
+      Editar
+    <% end %>    
+
+    <%= link_to tickets_path, class: "bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-5 rounded transition duration-200 flex items-center" do %>      
+      Voltar para a lista
+    <% end %>    
+  </div>
+</div>
